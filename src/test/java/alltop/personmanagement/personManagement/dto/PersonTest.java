@@ -13,8 +13,10 @@ public class PersonTest {
 
 		final String className = "alltop.personmanagement.personManagement.dto.Person";
 
-		assertPojoMethodsFor(className).testing(Method.GETTER)
-									   .testing(Method.CONSTRUCTOR)
-									   .areWellImplemented();
+		assertPojoMethodsFor(className)
+			.testing(Method.GETTER)
+			.testing(Method.SETTER)
+			.testing(Method.CONSTRUCTOR)
+			.areWellImplemented();
 	}
 }
