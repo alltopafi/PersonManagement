@@ -26,7 +26,11 @@
 	    <artifactId>pojo-tester</artifactId>
 	    <version>0.7.6</version>
 	</dependency>
-	
+	<dependency>
+	    <groupId>org.pitest</groupId>
+	    <artifactId>pitest-maven</artifactId>
+	    <version>1.4.5</version>
+	</dependency>
 	<dependency>
     	<groupId>org.jacoco</groupId>
     	<artifactId>jacoco-maven-plugin</artifactId>
@@ -41,8 +45,6 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.6.1</version>
 				<configuration>
-					<!-- <skipMain>true</skipMain>
-					<skip>true</skip> -->
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
@@ -122,6 +124,32 @@
 						<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
 					</systemPropertyVariables>
 				</configuration>
+			</plugin>
+			<plugin>
+			    <groupId>org.pitest</groupId>
+			    <artifactId>pitest-maven</artifactId>
+			    <version>1.4.5</version>
+			    <configuration>
+			        <reportsDirectory>${project.build.directory}/pitReport</reportsDirectory>
+			    	<timestampedReports>false</timestampedReports>
+			    	<mutationThreshold>100</mutationThreshold>
+			    	<avoidCallsTo>
+			    		<avoidCallsTo>java.io.FileReader</avoidCallsTo>
+			    		<avoidCallsTo>java.util.Scanner</avoidCallsTo>
+			    	</avoidCallsTo>
+			    	<!-- <excludedMethods>
+			    		<excludedMethod>java.io.FileReader#close</excludedMethod>
+			    	</excludedMethods> -->
+			     </configuration>
+			    <executions>
+			    	<execution>
+				    	<id>pit-check</id>
+					    <phase>install</phase>
+					    <goals>
+					        <goal>mutationCoverage</goal>
+					    </goals>
+					</execution>
+			    </executions>
 			</plugin>
 		</plugins>
 	</build>
