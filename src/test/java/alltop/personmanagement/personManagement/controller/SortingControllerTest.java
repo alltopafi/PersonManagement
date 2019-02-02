@@ -48,12 +48,27 @@ public class SortingControllerTest {
 	@Test
 	public void testSortByGender() {
 		sortingController.sortByGender(people);
+		
 		assertEquals("zlast first2 female color dateOfBirth\n" + "alast first male color dateOfBirth\n"
 				+ "qlast first1 male color1 dateOfBirth1\n" + "", outContent.toString());
-
+		
+		assertEquals(person2, people[0]);
 		assertEquals(person0, people[1]);
 		assertEquals(person1, people[2]);
-		assertEquals(person2, people[0]);
 
+	}
+
+	@Test
+	public void testSortByLastNameDescending() {
+		sortingController.sortByLastNameDescending(people);
+		
+		assertEquals("zlast first2 female color dateOfBirth\n" + 
+				"qlast first1 male color1 dateOfBirth1\n" + 
+				"alast first male color dateOfBirth\n" + 
+				"", outContent.toString());
+
+		assertEquals(person2, people[0]);
+		assertEquals(person1, people[1]);
+		assertEquals(person0, people[2]);
 	}
 }
