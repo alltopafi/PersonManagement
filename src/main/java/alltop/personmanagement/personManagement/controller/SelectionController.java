@@ -25,7 +25,7 @@ public class SelectionController {
 		return choice;
 	}
 
-	public int checkValidSelection(int i, Scanner keyboard) {
+	private int checkValidSelection(int i, Scanner keyboard) {
 		switch (i) {
 		case 1:
 		case 2:
