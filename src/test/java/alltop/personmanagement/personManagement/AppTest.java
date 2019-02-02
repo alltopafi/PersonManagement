@@ -1,38 +1,26 @@
 package alltop.personmanagement.personManagement;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.assertNotNull;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import org.junit.Test;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+public class AppTest {
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+	@Test
+	public void testConstructor() {
+		App app = new App();
+		assertNotNull(app);
+	}
+
+	@Test(expected = Exception.class)
+	public void testMainException() throws Exception {
+		App.main(new String[0]);
+	}
+
+	@Test
+	public void testMain() throws Exception {
+		String[] args = { "test" };
+		App.main(args);
+	}
+
 }
