@@ -28,27 +28,23 @@ public class SortingController {
 	
 	private void sortByGender(Person[] people) {
 		Arrays.sort(people, new SortByGender());
-		
-		for(Object object : people) {
-			System.out.println(object);
-		}
+		displayArray(people);
 	}
 	
 	private void sortByBirthDate(Person[] people) {
 		Arrays.sort(people, new SortByBirthDate());
-		
-		for(Object object : people) {
-			System.out.println(object);
-		}
+		displayArray(people);
 	}
 	
 
 	private void sortByLastNameDescending(Person[] people) {
 		Arrays.sort(people, new SortByLastName());
-		
-		for(Object object : people) {
-			System.out.println(object);
-		}
+		displayArray(people);
 	}
 	
+	private void displayArray(Person[] people) {
+		for(Person person : people) {
+			System.out.println(person);
+		}
+	}
 }
