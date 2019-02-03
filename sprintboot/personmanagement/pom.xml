@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.2.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+	<groupId>alltop.personmanagement</groupId>
+	<artifactId>personmanagement</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>personmanagement</name>
+	<description>SpringBoot app to use PersonManagement</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger-ui</artifactId>
+		    <version>2.9.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-swagger2</artifactId>
+		    <version>2.9.2</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.5.201505241946</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>post-unit-test</id>
+						<phase>install</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>target/jacoco.exec</dataFile>
+						</configuration>
+					</execution>
+					<execution>
+					    <id>jacoco-check</id>
+					    <phase>install</phase>
+					    <goals>
+					        <goal>check</goal>
+					    </goals>
+					    <configuration>
+					        <rules>
+					            <rule implementation="org.jacoco.maven.RuleConfiguration">
+					                <element>BUNDLE</element>
+					                <limits>
+					                    <limit implementation="org.jacoco.report.check.Limit">
+					                        <counter>INSTRUCTION</counter>
+					                        <value>COVEREDRATIO</value>
+					                        <minimum>1</minimum>
+					                    </limit>
+					                    <limit implementation="org.jacoco.report.check.Limit">
+					                        <counter>LINE</counter>
+					                        <value>COVEREDRATIO</value>
+					                        <minimum>1</minimum>
+					                    </limit>
+					                    <limit implementation="org.jacoco.report.check.Limit">
+					                        <counter>BRANCH</counter>
+					                        <value>COVEREDRATIO</value>
+					                        <minimum>1</minimum>
+					                    </limit>
+\					                    <limit implementation="org.jacoco.report.check.Limit">
+					                        <counter>METHOD</counter>
+					                        <value>COVEREDRATIO</value>
+					                        <minimum>1</minimum>
+					                    </limit>
+					                    <limit implementation="org.jacoco.report.check.Limit">
+					                        <counter>CLASS</counter>
+					                        <value>COVEREDRATIO</value>
+					                        <minimum>1</minimum>
+					                    </limit>
+					                </limits>
+					            </rule>
+					        </rules>
+					    </configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<systemPropertyVariables>
+						<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+			<plugin>
+			    <groupId>org.pitest</groupId>
+			    <artifactId>pitest-maven</artifactId>
+			    <version>1.4.5</version>
+			    <configuration>
+			        <reportsDirectory>${project.build.directory}/pitReport</reportsDirectory>
+			    	<timestampedReports>false</timestampedReports>
+			    	<mutationThreshold>100</mutationThreshold>
+			    	<avoidCallsTo>
+			    		<avoidCallsTo>java.io.FileReader</avoidCallsTo>
+			    		<avoidCallsTo>java.util.Scanner</avoidCallsTo>
+			    	</avoidCallsTo>
+			     </configuration>
+			    <executions>
+			    	<execution>
+				    	<id>pit-check</id>
+					    <phase>install</phase>
+					    <goals>
+					        <goal>mutationCoverage</goal>
+					    </goals>
+					</execution>
+			    </executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
