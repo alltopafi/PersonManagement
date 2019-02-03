@@ -46,8 +46,8 @@ public class SortingControllerTest {
 	}
 
 	@Test
-	public void testSortByGender() {
-		sortingController.sortByGender(people);
+	public void testSortByGender() throws Exception {
+		sortingController.handleSortOption(people, 1);
 		
 		assertEquals("zlast first2 female color 09/20/1988\n" + 
 				"alast first male color 01/22/2000\n" + 
@@ -60,8 +60,8 @@ public class SortingControllerTest {
 	}
 	
 	@Test
-	public void testSortByBirthDate() {
-		sortingController.sortByBirthDate(people);
+	public void testSortByBirthDate() throws Exception {
+		sortingController.handleSortOption(people, 2);
 		
 		assertEquals("zlast first2 female color 09/20/1988\n" + 
 				"alast first male color 01/22/2000\n" + 
@@ -73,8 +73,8 @@ public class SortingControllerTest {
 	}
 
 	@Test
-	public void testSortByLastNameDescending() {
-		sortingController.sortByLastNameDescending(people);
+	public void testSortByLastNameDescending() throws Exception {
+		sortingController.handleSortOption(people, 3);
 		
 		assertEquals("zlast first2 female color 09/20/1988\n" + 
 				"qlast first1 male color1 01/23/2000\n" + 
@@ -83,5 +83,10 @@ public class SortingControllerTest {
 		assertEquals(person2, people[0]);
 		assertEquals(person1, people[1]);
 		assertEquals(person0, people[2]);
+	}
+	
+	@Test(expected=Exception.class)
+	public void testInvalidInput() throws Exception {
+		sortingController.handleSortOption(people, 7);
 	}
 }
