@@ -53,6 +53,7 @@ public class AppTest {
 		PrintWriter writer = new PrintWriter(new FileWriter(output));
 		writer.println("testLast, testFirst male | color | 11/11/1992");
 		writer.println("testLast, testFirst female | color | 11/11/1992");
+		writer.println("testLast, testFirst female | color | 11/11/1992");
 		writer.close();
 		String[] args = { output.getAbsolutePath() };
 		ByteArrayInputStream in = new ByteArrayInputStream("1".getBytes());
