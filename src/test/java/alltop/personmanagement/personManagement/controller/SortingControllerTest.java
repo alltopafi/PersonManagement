@@ -29,9 +29,9 @@ public class SortingControllerTest {
 		sortingController = new SortingController();
 		System.setOut(new PrintStream(outContent));
 
-		person0 = new Person("alast", "first", "male", "color", "dateOfBirth");
-		person1 = new Person("qlast", "first1", "male", "color1", "dateOfBirth1");
-		person2 = new Person("zlast", "first2", "female", "color", "dateOfBirth");
+		person0 = new Person("alast", "first", "male", "color", "01/22/2000");
+		person1 = new Person("qlast", "first1", "male", "color1", "01/23/2000");
+		person2 = new Person("zlast", "first2", "female", "color", "09/20/1988");
 
 		people = new Person[3];
 		people[0] = person0;
@@ -49,23 +49,36 @@ public class SortingControllerTest {
 	public void testSortByGender() {
 		sortingController.sortByGender(people);
 		
-		assertEquals("zlast first2 female color dateOfBirth\n" + "alast first male color dateOfBirth\n"
-				+ "qlast first1 male color1 dateOfBirth1\n" + "", outContent.toString());
+		assertEquals("zlast first2 female color 09/20/1988\n" + 
+				"alast first male color 01/22/2000\n" + 
+				"qlast first1 male color1 01/23/2000\n", outContent.toString());
 		
 		assertEquals(person2, people[0]);
 		assertEquals(person0, people[1]);
 		assertEquals(person1, people[2]);
 
 	}
+	
+	@Test
+	public void testSortByBirthDate() {
+		sortingController.sortByBirthDate(people);
+		
+		assertEquals("zlast first2 female color 09/20/1988\n" + 
+				"alast first male color 01/22/2000\n" + 
+				"qlast first1 male color1 01/23/2000\n", outContent.toString());
+		
+		assertEquals(person2, people[0]);
+		assertEquals(person0, people[1]);
+		assertEquals(person1, people[2]);
+	}
 
 	@Test
 	public void testSortByLastNameDescending() {
 		sortingController.sortByLastNameDescending(people);
 		
-		assertEquals("zlast first2 female color dateOfBirth\n" + 
-				"qlast first1 male color1 dateOfBirth1\n" + 
-				"alast first male color dateOfBirth\n" + 
-				"", outContent.toString());
+		assertEquals("zlast first2 female color 09/20/1988\n" + 
+				"qlast first1 male color1 01/23/2000\n" + 
+				"alast first male color 01/22/2000\n", outContent.toString());
 
 		assertEquals(person2, people[0]);
 		assertEquals(person1, people[1]);

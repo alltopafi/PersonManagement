@@ -1,6 +1,7 @@
 package alltop.personmanagement.personManagement.controller;
 
 import alltop.personmanagement.personManagement.dto.Person;
+import alltop.personmanagement.personManagement.sorting.SortByBirthDate;
 import alltop.personmanagement.personManagement.sorting.SortByGender;
 import alltop.personmanagement.personManagement.sorting.SortByLastName;
 import edu.emory.mathcs.backport.java.util.Arrays;
@@ -14,6 +15,14 @@ public class SortingController {
 	
 	public void sortByGender(Person[] people) {
 		Arrays.sort(people, new SortByGender());
+		
+		for(Object object : people) {
+			System.out.println(object);
+		}
+	}
+	
+	public void sortByBirthDate(Person[] people) {
+		Arrays.sort(people, new SortByBirthDate());
 		
 		for(Object object : people) {
 			System.out.println(object);
