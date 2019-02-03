@@ -1,5 +1,8 @@
 package alltop.personmanagement.personManagement.dto;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.apache.commons.lang3.StringUtils;
 
 public class Person {
@@ -98,6 +101,9 @@ public class Person {
 	
 	@Override
 	public String toString() {
-		return lastName + " " + firstName + " " + gender + " " + favoriteColor + " " + dateOfBirth;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");		
+		return lastName.toUpperCase() + " " + firstName.toUpperCase() + " " + 
+				gender.toUpperCase() + " " + favoriteColor.toUpperCase() +
+				" " + LocalDate.parse(dateOfBirth, formatter).format(formatter);
 	}
 }
