@@ -36,6 +36,12 @@
     	<artifactId>jacoco-maven-plugin</artifactId>
     	<version>0.8.3</version>
 	</dependency>
+	<dependency>
+		<groupId>alltop.personmanagement</groupId>
+		<artifactId>personManagement</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<scope>runtime</scope>
+	</dependency>
   </dependencies>
   
   <build>
