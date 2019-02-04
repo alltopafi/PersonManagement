@@ -4,7 +4,7 @@
 
   <groupId>alltop.personmanagement</groupId>
   <artifactId>personManagement</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>personManagement</name>
@@ -35,6 +35,12 @@
     	<groupId>org.jacoco</groupId>
     	<artifactId>jacoco-maven-plugin</artifactId>
     	<version>0.8.3</version>
+	</dependency>
+	<dependency>
+		<groupId>alltop.personmanagement</groupId>
+		<artifactId>personManagement</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<scope>runtime</scope>
 	</dependency>
   </dependencies>
   
