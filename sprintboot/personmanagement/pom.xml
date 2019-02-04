@@ -137,6 +137,7 @@
 					</systemPropertyVariables>
 			        <excludes>
  						<exclude>**/lib/*</exclude>
+ 						<exclude>**/PersonmanagementApplication.class</exclude>
  			        </excludes>
 				</configuration>
 			</plugin>
