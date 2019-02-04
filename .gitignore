@@ -1,5 +1,5 @@
 .DS_STORE
-.classpath
-.project
-.settings/
-target/
+jar/.classpath
+jar/.project
+jar/.settings/
+Jar/target/
