@@ -1,5 +1,5 @@
 steps:
-- name: 'alltop/perosnManagement/mvn'
+- name: 'gcr.io/cloud-builders/mvn'
   args: ['install']
 - name: 'alltop/personManagement/docker'
   args: ['build', '--tag=alltop/$PROJECT_ID/spring-boot', '.']
