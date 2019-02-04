@@ -64,4 +64,16 @@ public class PersonManagementControllerTest {
 		String test = controller.returnSortedByGender();
 		assertEquals("[{\"lastName\":\"STARK\",\"firstName\":\"ARYA\",\"gender\":\"FEMALE\",\"favoriteColor\":\"PINK\",\"dateOfBirth\":\"01/13/1984\"},{\"lastName\":\"Targaryen\",\"firstName\":\"daenerys\",\"gender\":\"female\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/20/1970\"},{\"lastName\":\"DrOgO\",\"firstName\":\"KhAL\",\"gender\":\"male\",\"favoriteColor\":\"Brown\",\"dateOfBirth\":\"11/24/1974\"},{\"lastName\":\"Lannister\",\"firstName\":\"Tyrion\",\"gender\":\"male\",\"favoriteColor\":\"blue\",\"dateOfBirth\":\"01/01/1968\"},{\"lastName\":\"Seaworth\",\"firstName\":\"Davos\",\"gender\":\"male\",\"favoriteColor\":\"green\",\"dateOfBirth\":\"09/20/1941\"},{\"lastName\":\"SNOW\",\"firstName\":\"JON\",\"gender\":\"male\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/19/1971\"}]",test);
 	}
+	
+	@Test
+	public void testReturnSortByBirthdate() throws Exception {
+		String test = controller.returnSortedByBirthdate();
+		assertEquals("[{\"lastName\":\"Seaworth\",\"firstName\":\"Davos\",\"gender\":\"male\",\"favoriteColor\":\"green\",\"dateOfBirth\":\"09/20/1941\"},{\"lastName\":\"Lannister\",\"firstName\":\"Tyrion\",\"gender\":\"male\",\"favoriteColor\":\"blue\",\"dateOfBirth\":\"01/01/1968\"},{\"lastName\":\"Targaryen\",\"firstName\":\"daenerys\",\"gender\":\"female\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/20/1970\"},{\"lastName\":\"SNOW\",\"firstName\":\"JON\",\"gender\":\"male\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/19/1971\"},{\"lastName\":\"DrOgO\",\"firstName\":\"KhAL\",\"gender\":\"male\",\"favoriteColor\":\"Brown\",\"dateOfBirth\":\"11/24/1974\"},{\"lastName\":\"STARK\",\"firstName\":\"ARYA\",\"gender\":\"FEMALE\",\"favoriteColor\":\"PINK\",\"dateOfBirth\":\"01/13/1984\"}]",test);
+	}
+	
+	@Test
+	public void testReturnSortByName() throws Exception {
+		String test = controller.returnSortedByName();
+		assertEquals("[{\"lastName\":\"Targaryen\",\"firstName\":\"daenerys\",\"gender\":\"female\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/20/1970\"},{\"lastName\":\"STARK\",\"firstName\":\"ARYA\",\"gender\":\"FEMALE\",\"favoriteColor\":\"PINK\",\"dateOfBirth\":\"01/13/1984\"},{\"lastName\":\"SNOW\",\"firstName\":\"JON\",\"gender\":\"male\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/19/1971\"},{\"lastName\":\"Seaworth\",\"firstName\":\"Davos\",\"gender\":\"male\",\"favoriteColor\":\"green\",\"dateOfBirth\":\"09/20/1941\"},{\"lastName\":\"Lannister\",\"firstName\":\"Tyrion\",\"gender\":\"male\",\"favoriteColor\":\"blue\",\"dateOfBirth\":\"01/01/1968\"},{\"lastName\":\"DrOgO\",\"firstName\":\"KhAL\",\"gender\":\"male\",\"favoriteColor\":\"Brown\",\"dateOfBirth\":\"11/24/1974\"}]",test);
+	}
 }

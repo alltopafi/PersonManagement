@@ -25,29 +25,39 @@ public class PersonManagementController {
 	private final SortingController sortingController = new SortingController();
 	private final ObjectMapper mapper = new ObjectMapper();
 
+	@Bean(name = "personData")
+	public File namedFile() throws FileNotFoundException {
+		File namedFile = ResourceUtils.getFile("classpath:personData.txt");
+		return namedFile;
+	}
 
-    @Bean(name="personData")
-    public File namedFile() throws FileNotFoundException {
-        File namedFile = ResourceUtils.getFile("classpath:personData.txt");
-        return namedFile;
-    }
-	
-	
-	
 //	POST /records - Post a single data line in any of the 3 formats supported by your existing code
-//	GET /records/gender - returns records sorted by gender
-//	GET /records/birthdate - returns records sorted by birthdate
-//	GET /records/name - returns records sorted by name
 
-	@RequestMapping(value="/records/gender", method = RequestMethod.GET)
+//	GET /records/gender - returns records sorted by gender
+	@RequestMapping(value = "/records/gender", method = RequestMethod.GET)
 	public String returnSortedByGender() throws Exception {
+		return sortingHelper(1);
+	}
+
+//	GET /records/birthdate - returns records sorted by birthdate
+	@RequestMapping(value = "/records/birthdate", method = RequestMethod.GET)
+	public String returnSortedByBirthdate() throws Exception {
+		return sortingHelper(2);
+	}
+
+//	GET /records/name - returns records sorted by name
+	@RequestMapping(value = "/records/name", method = RequestMethod.GET)
+	public String returnSortedByName() throws Exception {
+		return sortingHelper(3);
+	}
+
+	private String sortingHelper(int sortingChoice) throws Exception {
 		String path = namedFile().getPath();
 		Set<String> rawDataFromFile = fileReaderController.readFile(path);
 		Set<Person> people = personTransformer.transformPersonsFromRawData(rawDataFromFile);
-		Person[] temp = people.toArray(new Person[people.size()]);
-		sortingController.handleSortOption(temp, 1);
-
-		
-		return mapper.writeValueAsString(temp);
+		Person[] result = people.toArray(new Person[people.size()]);
+		sortingController.handleSortOption(result, sortingChoice);
+		return mapper.writeValueAsString(result);
 	}
+
 }
