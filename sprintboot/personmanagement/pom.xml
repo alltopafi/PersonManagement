@@ -6,7 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	
 	<groupId>alltop.personmanagement</groupId>
@@ -24,7 +24,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -50,9 +49,10 @@
 		  	<version>0.0.1-SNAPSHOT</version>
 		    <scope>system</scope>
 		    <systemPath>
-		        ${basedir}/src/main/resources/personManagement-0.0.1-SNAPSHOT.jar
+		        ${basedir}/src/main/resources/lib/personManagement-0.0.1-SNAPSHOT.jar
 		    </systemPath>
-</dependency>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -60,9 +60,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-			    <includeSystemScope>true</includeSystemScope>
-			  </configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -138,6 +135,9 @@
 					<systemPropertyVariables>
 						<jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
 					</systemPropertyVariables>
+			        <excludes>
+ 						<exclude>**/lib/*</exclude>
+ 			        </excludes>
 				</configuration>
 			</plugin>
 			<plugin>
