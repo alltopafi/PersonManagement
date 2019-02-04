@@ -10,9 +10,9 @@
 	</parent>
 	
 	<groupId>alltop.personmanagement</groupId>
-	<artifactId>personmanagement</artifactId>
+	<artifactId>personmanagement-rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>personmanagement</name>
+	<name>personmanagement-rest</name>
 	<description>SpringBoot app to use PersonManagement</description>
 
 	<properties>
@@ -46,7 +46,6 @@
 			<groupId>alltop.personmanagement</groupId>
 		  	<artifactId>personManagement</artifactId>
 		  	<version>0.0.1-SNAPSHOT</version>
-		  
 		    <scope>system</scope>
 		    <systemPath>
 		        ${basedir}/src/main/resources/lib/personManagement-0.0.1-SNAPSHOT.jar
@@ -55,7 +54,7 @@
 		<dependency>
 			<groupId>alltop.personmanagement</groupId>
 			<artifactId>personManagement</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 		    <groupId>backport-util-concurrent</groupId>
@@ -151,7 +150,7 @@
 					</systemPropertyVariables>
 			        <excludes>
  						<exclude>**/lib/*</exclude>
- 						<exclude>**/PersonmanagementApplication.class</exclude>
+ 						<exclude>**/PersonmanagementRestApplication.class</exclude>
  			        </excludes>
 				</configuration>
 			</plugin>
