@@ -64,7 +64,6 @@
 		<dependency>
 		    <groupId>org.apache.commons</groupId>
 		    <artifactId>commons-lang3</artifactId>
-		    <version>3.8.1</version>
 		</dependency>
 	</dependencies>
 
@@ -163,8 +162,7 @@
 			    	<timestampedReports>false</timestampedReports>
 			    	<mutationThreshold>100</mutationThreshold>
 			    	<avoidCallsTo>
-			    		<avoidCallsTo>java.io.FileReader</avoidCallsTo>
-			    		<avoidCallsTo>java.util.Scanner</avoidCallsTo>
+			    		<avoidCallsTo>java.io.BufferedWriter</avoidCallsTo>
 			    	</avoidCallsTo>
 			     </configuration>
 			    <executions>

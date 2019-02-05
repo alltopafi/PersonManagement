@@ -1,11 +1,11 @@
 package alltop.personmanagement.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Set;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.util.ResourceUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,14 +25,18 @@ public class PersonManagementController {
 	private final SortingController sortingController = new SortingController();
 	private final ObjectMapper mapper = new ObjectMapper();
 
-	@Bean(name = "personData")
-	public File namedFile() throws FileNotFoundException {
-		File namedFile = ResourceUtils.getFile("classpath:personData.txt");
-		return namedFile;
-	}
+	@Value("classpath:personData.txt")
+	private Resource personData;
 
 //	POST /records - Post a single data line in any of the 3 formats supported by your existing code
-
+	@RequestMapping(value = "/records/gender", method = RequestMethod.POST)
+	public String addNewPerson(Person person) throws Exception {
+		BufferedWriter writer = new BufferedWriter(new FileWriter(personData.getFile(), true));
+	    writer.append("\n" + person.toString());
+	    writer.close();
+		return mapper.writeValueAsString(person);
+	}
+	
 //	GET /records/gender - returns records sorted by gender
 	@RequestMapping(value = "/records/gender", method = RequestMethod.GET)
 	public String returnSortedByGender() throws Exception {
@@ -52,7 +56,7 @@ public class PersonManagementController {
 	}
 
 	private String sortingHelper(int sortingChoice) throws Exception {
-		String path = namedFile().getPath();
+		String path = personData.getFile().getPath();
 		Set<String> rawDataFromFile = fileReaderController.readFile(path);
 		Set<Person> people = personTransformer.transformPersonsFromRawData(rawDataFromFile);
 		Person[] result = people.toArray(new Person[people.size()]);
