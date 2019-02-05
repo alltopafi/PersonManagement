@@ -101,7 +101,7 @@ public class Person {
 	
 	@Override
 	public String toString() {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");		
 		return lastName.toUpperCase() + " " + firstName.toUpperCase() + " " + 
 				gender.toUpperCase() + " " + favoriteColor.toUpperCase() +
 				" " + LocalDate.parse(dateOfBirth, formatter).format(formatter);

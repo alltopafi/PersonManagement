@@ -32,4 +32,4 @@ I create a file on the filesystem where the application is being ran to persit t
 
 
 **Notes:**
-The POST request must follow the date format MM/dd/YYYY
+The POST request must follow the date format M/d/YYYY

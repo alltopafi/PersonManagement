@@ -27,7 +27,7 @@ public class PersonTest {
 	public void testHashCodeAndToString() {
 		Person person = new Person("a","b","c","d","09/20/1992");
 		assertEquals(-1931030538,person.hashCode());
-		assertEquals("A B C D 09/20/1992", person.toString());
+		assertEquals("A B C D 9/20/1992", person.toString());
 				
 	}
 }
