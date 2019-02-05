@@ -14,7 +14,7 @@ public class NewPersonRequest {
 	private GenderEnum gender;
 	@ApiModelProperty(required = true, position = 3)
 	private String favoriteColor;
-	@ApiModelProperty(required = true, example="MM/dd/YYYY", position = 4)
+	@ApiModelProperty(required = true, example="01/03/1999", position = 4)
 	private String dateOfBirth;
 	
 	public String getLastName() {
