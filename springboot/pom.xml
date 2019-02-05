@@ -89,7 +89,7 @@
 					</execution>
 					<execution>
 						<id>post-unit-test</id>
-						<phase>install</phase>
+						<phase>test</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
@@ -99,7 +99,7 @@
 					</execution>
 					<execution>
 					    <id>jacoco-check</id>
-					    <phase>install</phase>
+					    <phase>test</phase>
 					    <goals>
 					        <goal>check</goal>
 					    </goals>
@@ -164,7 +164,7 @@
 			    <executions>
 			    	<execution>
 				    	<id>pit-check</id>
-					    <phase>install</phase>
+					    <phase>test</phase>
 					    <goals>
 					        <goal>mutationCoverage</goal>
 					    </goals>
