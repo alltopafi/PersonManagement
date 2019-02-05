@@ -17,7 +17,7 @@ I also included swagger because it allows for a clean interface that will run al
 ```http://localhost:8080/personmanagement/swagger-ui.html#/```
 
 #### Data persistance 
-On application boot up we load a txt file that has been packaged with the jar to persist the data.
+I create a file on the filesystem where the application is being ran to persit the data. 
 
 
 #### Enpoints of application
