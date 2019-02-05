@@ -10,9 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -32,9 +30,6 @@ public class PersonManagementControllerTest {
 
 
 	private PersonManagementController controller = new PersonManagementController();
-	
-	@Rule
-	public TemporaryFolder tempFolder = new TemporaryFolder();
 
 	private Set<String> expectedTestData;
 	
@@ -45,7 +40,7 @@ public class PersonManagementControllerTest {
 	@Before
 	public void setup() throws IOException {
 		
-		testDataFile = new File("testFile.txt");
+		testDataFile = new File("./target/testFile.txt");
 
 		expectedTestData = new HashSet<>();
 		expectedTestData.add("last1 first1 male1 orange1 01/12/1204");
