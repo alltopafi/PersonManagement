@@ -20,7 +20,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import alltop.personmanagement.personManagement.dto.Person;
+import alltop.personmanagement.dto.GenderEnum;
+import alltop.personmanagement.dto.NewPersonRequest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class, classes = PersonManagementController.class)
@@ -58,10 +59,15 @@ public class PersonManagementControllerTest {
 
 	@Test
 	public void testAddNewPerson() throws Exception {
-		Person testPerson = new Person("testLast", "testFirst", "male", "testColor", "01/20/1988");
-		String testResult = controller.addNewPerson(testPerson);
-		assertEquals(
-				"{\"lastName\":\"testLast\",\"firstName\":\"testFirst\",\"gender\":\"male\",\"favoriteColor\":\"testColor\",\"dateOfBirth\":\"01/20/1988\"}",
+		NewPersonRequest request = new NewPersonRequest();
+		request.setLastName("testLast");
+		request.setFirstName("testFirst");
+		request.setGender(GenderEnum.MALE);
+		request.setFavoriteColor("blue");
+		request.setDateOfBirth("11/24/1992");
+		
+		String testResult = controller.addNewPerson(request);
+		assertEquals("{\"lastName\":\"testLast\",\"firstName\":\"testFirst\",\"gender\":\"MALE\",\"favoriteColor\":\"blue\",\"dateOfBirth\":\"11/24/1992\"}",
 				testResult);
 	}
 
