@@ -19,7 +19,7 @@ There are three test files with test data located in src/main/resources (one for
 3. Conform the data to enter into the Person DTO (lastName firstname gender favoriteColor dateOfBirth) Using a dto to make sorting easier.
 
 **Notes:**
-*  Date is expected to be passed as space comma or pipe delimited list (delimiters may be mixed withing file or even line of date), and the date must follow the format MM/dd/YYYY
+*  Date is expected to be passed as space comma or pipe delimited list (delimiters may be mixed withing file or even line of date), and the date must follow the format M/d/YYYY
 Ex.
   * If two rows contain the same values only one row will be displayed in the output.
 
