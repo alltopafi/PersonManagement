@@ -24,15 +24,18 @@ public class PersonManagementController {
 	private final PersonTransformer personTransformer = new PersonTransformer();
 	private final SortingController sortingController = new SortingController();
 	private final ObjectMapper mapper = new ObjectMapper();
-
-	@Value("classpath:personData.txt")
+	
+	@Value("file:./personData.txt")
 	private Resource personData;
-
+	
+	
 //	POST /records - Post a single data line in any of the 3 formats supported by your existing code
 	@RequestMapping(value = "/records/gender", method = RequestMethod.POST)
 	public String addNewPerson(Person person) throws Exception {
+		
+		
 		BufferedWriter writer = new BufferedWriter(new FileWriter(personData.getFile(), true));
-	    writer.append("\n" + person.toString());
+	    writer.append(person.toString().toUpperCase() + "\n");
 	    writer.close();
 		return mapper.writeValueAsString(person);
 	}
@@ -56,8 +59,7 @@ public class PersonManagementController {
 	}
 
 	private String sortingHelper(int sortingChoice) throws Exception {
-		String path = personData.getFile().getPath();
-		Set<String> rawDataFromFile = fileReaderController.readFile(path);
+		Set<String> rawDataFromFile = fileReaderController.readFile(personData.getFile().getPath());
 		Set<Person> people = personTransformer.transformPersonsFromRawData(rawDataFromFile);
 		Person[] result = people.toArray(new Person[people.size()]);
 		sortingController.handleSortOption(result, sortingChoice);
