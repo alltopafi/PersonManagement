@@ -163,8 +163,7 @@
 			    	<timestampedReports>false</timestampedReports>
 			    	<mutationThreshold>100</mutationThreshold>
 			    	<avoidCallsTo>
-			    		<avoidCallsTo>java.io.FileReader</avoidCallsTo>
-			    		<avoidCallsTo>java.util.Scanner</avoidCallsTo>
+			    		<avoidCallsTo>java.io.BufferedWriter</avoidCallsTo>
 			    	</avoidCallsTo>
 			     </configuration>
 			    <executions>

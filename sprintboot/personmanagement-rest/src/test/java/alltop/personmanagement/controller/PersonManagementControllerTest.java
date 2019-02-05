@@ -9,14 +9,20 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
-import org.springframework.context.annotation.Bean;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.core.io.Resource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.test.util.ReflectionTestUtils;
+
+import alltop.personmanagement.personManagement.dto.Person;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(
@@ -32,16 +38,14 @@ public class PersonManagementControllerTest {
 
 	private Set<String> expectedTestData;
 	
-	
-	@Bean
-    public File namedFile() throws IOException {
-        return setup();
-    }
+	@Mock
+	private Resource testResource;
+    private File testDataFile;
 
-	
-	public File setup() throws IOException {
+	@Before
+	public void setup() throws IOException {
 		
-		File testDataFile = null;
+		testDataFile = new File("testFile.txt");
 
 		expectedTestData = new HashSet<>();
 		expectedTestData.add("last1 first1 male1 orange1 01/12/1204");
@@ -55,25 +59,32 @@ public class PersonManagementControllerTest {
 			writer.newLine();
 		}
 		writer.close();
-		
-		return testDataFile;
+		Mockito.when(testResource.getFile()).thenReturn(testDataFile);
+		ReflectionTestUtils.setField(controller, "personData", testResource);
+	}
+	
+	@Test
+	public void testAddNewPerson() throws Exception {
+		Person testPerson = new Person("testLast", "testFirst", "male", "testColor", "01/20/1988");
+		String testResult = controller.addNewPerson(testPerson);
+		assertEquals("{\"lastName\":\"testLast\",\"firstName\":\"testFirst\",\"gender\":\"male\",\"favoriteColor\":\"testColor\",\"dateOfBirth\":\"01/20/1988\"}", testResult);
 	}
 
 	@Test
 	public void testReturnSortByGender() throws Exception {
 		String test = controller.returnSortedByGender();
-		assertEquals("[{\"lastName\":\"STARK\",\"firstName\":\"ARYA\",\"gender\":\"FEMALE\",\"favoriteColor\":\"PINK\",\"dateOfBirth\":\"01/13/1984\"},{\"lastName\":\"Targaryen\",\"firstName\":\"daenerys\",\"gender\":\"female\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/20/1970\"},{\"lastName\":\"DrOgO\",\"firstName\":\"KhAL\",\"gender\":\"male\",\"favoriteColor\":\"Brown\",\"dateOfBirth\":\"11/24/1974\"},{\"lastName\":\"Lannister\",\"firstName\":\"Tyrion\",\"gender\":\"male\",\"favoriteColor\":\"blue\",\"dateOfBirth\":\"01/01/1968\"},{\"lastName\":\"Seaworth\",\"firstName\":\"Davos\",\"gender\":\"male\",\"favoriteColor\":\"green\",\"dateOfBirth\":\"09/20/1941\"},{\"lastName\":\"SNOW\",\"firstName\":\"JON\",\"gender\":\"male\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/19/1971\"}]",test);
+		assertEquals("[{\"lastName\":\"last3\",\"firstName\":\"first3\",\"gender\":\"female3\",\"favoriteColor\":\"blue3\",\"dateOfBirth\":\"04/01/1404\"},{\"lastName\":\"last1\",\"firstName\":\"first1\",\"gender\":\"male1\",\"favoriteColor\":\"orange1\",\"dateOfBirth\":\"01/12/1204\"},{\"lastName\":\"last2\",\"firstName\":\"first2\",\"gender\":\"male2\",\"favoriteColor\":\"orange2\",\"dateOfBirth\":\"11/01/1254\"}]",test);
 	}
 	
 	@Test
 	public void testReturnSortByBirthdate() throws Exception {
 		String test = controller.returnSortedByBirthdate();
-		assertEquals("[{\"lastName\":\"Seaworth\",\"firstName\":\"Davos\",\"gender\":\"male\",\"favoriteColor\":\"green\",\"dateOfBirth\":\"09/20/1941\"},{\"lastName\":\"Lannister\",\"firstName\":\"Tyrion\",\"gender\":\"male\",\"favoriteColor\":\"blue\",\"dateOfBirth\":\"01/01/1968\"},{\"lastName\":\"Targaryen\",\"firstName\":\"daenerys\",\"gender\":\"female\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/20/1970\"},{\"lastName\":\"SNOW\",\"firstName\":\"JON\",\"gender\":\"male\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/19/1971\"},{\"lastName\":\"DrOgO\",\"firstName\":\"KhAL\",\"gender\":\"male\",\"favoriteColor\":\"Brown\",\"dateOfBirth\":\"11/24/1974\"},{\"lastName\":\"STARK\",\"firstName\":\"ARYA\",\"gender\":\"FEMALE\",\"favoriteColor\":\"PINK\",\"dateOfBirth\":\"01/13/1984\"}]",test);
+		assertEquals("[{\"lastName\":\"last1\",\"firstName\":\"first1\",\"gender\":\"male1\",\"favoriteColor\":\"orange1\",\"dateOfBirth\":\"01/12/1204\"},{\"lastName\":\"last2\",\"firstName\":\"first2\",\"gender\":\"male2\",\"favoriteColor\":\"orange2\",\"dateOfBirth\":\"11/01/1254\"},{\"lastName\":\"last3\",\"firstName\":\"first3\",\"gender\":\"female3\",\"favoriteColor\":\"blue3\",\"dateOfBirth\":\"04/01/1404\"}]",test);
 	}
 	
 	@Test
 	public void testReturnSortByName() throws Exception {
 		String test = controller.returnSortedByName();
-		assertEquals("[{\"lastName\":\"Targaryen\",\"firstName\":\"daenerys\",\"gender\":\"female\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/20/1970\"},{\"lastName\":\"STARK\",\"firstName\":\"ARYA\",\"gender\":\"FEMALE\",\"favoriteColor\":\"PINK\",\"dateOfBirth\":\"01/13/1984\"},{\"lastName\":\"SNOW\",\"firstName\":\"JON\",\"gender\":\"male\",\"favoriteColor\":\"black\",\"dateOfBirth\":\"01/19/1971\"},{\"lastName\":\"Seaworth\",\"firstName\":\"Davos\",\"gender\":\"male\",\"favoriteColor\":\"green\",\"dateOfBirth\":\"09/20/1941\"},{\"lastName\":\"Lannister\",\"firstName\":\"Tyrion\",\"gender\":\"male\",\"favoriteColor\":\"blue\",\"dateOfBirth\":\"01/01/1968\"},{\"lastName\":\"DrOgO\",\"firstName\":\"KhAL\",\"gender\":\"male\",\"favoriteColor\":\"Brown\",\"dateOfBirth\":\"11/24/1974\"}]",test);
+		assertEquals("[{\"lastName\":\"last3\",\"firstName\":\"first3\",\"gender\":\"female3\",\"favoriteColor\":\"blue3\",\"dateOfBirth\":\"04/01/1404\"},{\"lastName\":\"last2\",\"firstName\":\"first2\",\"gender\":\"male2\",\"favoriteColor\":\"orange2\",\"dateOfBirth\":\"11/01/1254\"},{\"lastName\":\"last1\",\"firstName\":\"first1\",\"gender\":\"male1\",\"favoriteColor\":\"orange1\",\"dateOfBirth\":\"01/12/1204\"}]",test);
 	}
 }
