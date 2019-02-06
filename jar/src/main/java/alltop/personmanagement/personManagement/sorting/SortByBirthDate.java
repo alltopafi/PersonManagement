@@ -13,7 +13,7 @@ public class SortByBirthDate implements Comparator<Person> {
 	@Override
 	public int compare(Person p1, Person p2) {
 		//create formatter for expected date string format
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
 
 		//Get date Objects to compare 
 		LocalDate p1BirthDate = LocalDate.parse(p1.getDateOfBirth(), formatter);
