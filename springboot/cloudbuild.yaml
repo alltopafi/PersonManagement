@@ -1,6 +1,6 @@
 steps:
 - name: "gcr.io/cloud-builders/mvn"
-  args: ["clean install", "-f", "jar/pom.xml"]
+  args: ["clean", "install", "-f", "jar/pom.xml"]
 - name: "gcr.io/cloud-builders/mvn"
   args: [ "install:install-file", "-Dfile=/personManagementTemp/jar/target/personManagement-1.0.0.jar", "-DgroupId=alltop.personmanagement", "-DartifactId=personManagement", "-Dversion=1.0.0", "-Dpackaging=jar"]
 - name: "gcr.io/cloud-builders/mvn"
