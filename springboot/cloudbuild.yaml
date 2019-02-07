@@ -1,4 +1,5 @@
 steps:
 - name: "gcr.io/cloud-builders/mvn"
+  args: ["cd", "/springboot"]
   args: ["mvn", "appengine:deploy"]
 timeout: "1600s"
