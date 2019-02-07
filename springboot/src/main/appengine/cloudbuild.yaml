@@ -1,4 +1,4 @@
 steps:
 - name: "gcr.io/cloud-builders/gcloud"
-  args: ["deploy", "springboot/src/main/appengine/"]
+  args: ["update", "springboot/src/main/appengine/"]
 timeout: "1600s"
