@@ -1,4 +1,4 @@
 steps:
 - name: "gcr.io/cloud-builders/gcloud"
-  args: ["gcloud deployment-manager deployments update", "deploy"]
+  args: ["PersonManagement", "deploy"]
 timeout: "1600s"
